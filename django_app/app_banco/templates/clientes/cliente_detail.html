@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles del Cliente</title>
+</head>
+
+<body>
+    <h1>Detalles del Cliente</h1>
+    <p>Nombre: {{ cliente.nombres_cliente }} {{ cliente.apellidos_cliente }}</p>
+    <p>Institución: {{ cliente.institucion.nombre_institucion }}</p>
+    <p>Dirección: {{ cliente.direccion_cliente }}</p>
+    <p>Tipo de Cliente: {{ cliente.tipo_cliente }}</p>
+    <p>DUI: {{ cliente.dui_cliente }}</p>
+    <p>Fecha de Nacimiento: {{ cliente.fecha_nacimiento_cliente }}</p>
+    <a href="{% url 'cliente_update' cliente.pk %}">Editar</a>
+    <a href="{% url 'cliente_list' %}">Volver a la lista</a>
+</body>
+
+</html>
