@@ -4,15 +4,19 @@
 
 {% block title %}Detalles de la Cuenta{% endblock %}
 
-{% block header %}Detalles de la Cuenta{% endblock %}
-
 {% block content %}
-<h1>Detalles de la Cuenta</h1>
-<p>Cliente: {{ cuenta.cliente.nombres_cliente }} {{ cuenta.cliente.apellidos_cliente }}</p>
-<p>Tipo de Cuenta: {{ cuenta.tipo_cuenta }}</p>
-<p>Saldo: {{ cuenta.saldo_cuenta }}</p>
-<p>Fecha de Creación: {{ cuenta.fecha_creacion_cuenta }}</p>
-<p>Saldo Inicial: {{ cuenta.saldo_inicial_cuenta }}</p>
-<a href="{% url 'cuenta_update' cuenta.pk %}">Editar</a>
-<a href="{% url 'cuenta_list' %}">Volver a la lista</a>
+<div class="detail-card">
+    <h2>Detalles de la Cuenta</h2>
+    <div class="detail-content">
+        <p><strong>Cliente:</strong> {{ cuenta.cliente.nombres_cliente }} {{ cuenta.cliente.apellidos_cliente }}</p>
+        <p><strong>Tipo de Cuenta:</strong> {{ cuenta.tipo_cuenta }}</p>
+        <p><strong>Saldo:</strong> ${{ cuenta.saldo_cuenta }}</p>
+        <p><strong>Fecha de Creación:</strong> {{ cuenta.fecha_creacion_cuenta }}</p>
+        <p><strong>Saldo Inicial:</strong> ${{ cuenta.saldo_inicial_cuenta }}</p>
+    </div>
+    <div class="button-group">
+        <a href="{% url 'cuenta_update' cuenta.pk %}" class="button-edit">Editar</a>
+        <a href="{% url 'cuenta_list' %}" class="button-back">Volver a la lista</a>
+    </div>
+</div>
 {% endblock %}

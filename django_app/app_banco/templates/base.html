@@ -14,6 +14,9 @@
         <h1>{% block header %}Migrador de Transacciones{% endblock %}</h1>
     </header>
 
+    {% if user.is_authenticated %}
+    <!-- Mostrar el menú solo si el usuario ha iniciado sesión -->
+
     <nav class="menu">
         <a href="{% url 'cliente_list' %}">Lista de Clientes</a>
         <a href="{% url 'cliente_create' %}">Nuevo Cliente</a>
@@ -28,7 +31,7 @@
                 <a href="{% url 'descargar_transacciones' %}">Descargar Transacciones</a>
             </div>
         </div>
-
+        {% endif %}
 
         {% if user.is_authenticated %}
         <form action="{% url 'logout' %}" method="post" style="display:inline;">

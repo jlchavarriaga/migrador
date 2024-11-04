@@ -1,0 +1,13 @@
+<!-- templates/404.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Página No Encontrada{% endblock %}
+
+{% block content %}
+<div class="error-404-container">
+    <h1>404 - Página No Encontrada</h1>
+    <p>Lo sentimos, pero la página que estás buscando no existe.</p>
+    <p><a href="{% url 'cliente_list' %}" class="back-home">Volver a la página principal</a></p>
+</div>
+{% endblock %}

@@ -4,19 +4,31 @@
 
 {% block title %}Lista de Clientes{% endblock %}
 
-{% block header %}Lista de Clientes{% endblock %}
-
 {% block content %}
 <h1>Lista de Clientes</h1>
-<a href="{% url 'cliente_create' %}">Nuevo Cliente</a>
-<ul>
-    {% for cliente in clientes %}
-    <li>
-        {{ cliente.nombres_cliente }} {{ cliente.apellidos_cliente }} -
-        <a href="{% url 'cliente_detail' cliente.pk %}">Ver</a> |
-        <a href="{% url 'cliente_update' cliente.pk %}">Editar</a> |
-        <a href="{% url 'cliente_delete' cliente.pk %}">Eliminar</a>
-    </li>
-    {% endfor %}
-</ul>
+<a href="{% url 'cliente_create' %}" class="button">Nuevo Cliente</a>
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Institución</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{ cliente.nombres_cliente }}</td>
+            <td>{{ cliente.apellidos_cliente }}</td>
+            <td>{{ cliente.institucion.nombre_institucion }}</td>
+            <td>
+                <a href="{% url 'cliente_detail' cliente.pk %}" class="button-view">Ver</a>
+                <a href="{% url 'cliente_update' cliente.pk %}" class="button-edit">Editar</a>
+                <a href="{% url 'cliente_delete' cliente.pk %}" class="button-delete">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

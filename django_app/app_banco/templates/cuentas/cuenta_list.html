@@ -4,22 +4,35 @@
 
 {% block title %}Lista de Cuentas{% endblock %}
 
-{% block header %}Lista de Cuentas{% endblock %}
-
 {% block content %}
-<h1>Lista de Cuentas</h1>
-<a href="{% url 'cuenta_create' %}">Nueva Cuenta</a>
-<ul>
-    {% for cuenta in cuentas %}
-    <li>
-        {{ cuenta.cliente.nombres_cliente }} {{ cuenta.cliente.apellidos_cliente }}
-        {{ cuenta.tipo_cuenta }} - Saldo: {{ cuenta.saldo_cuenta }}
-        - Creada el: {{cuenta.fecha_creacion_cuenta}}
-
-        <a href="{% url 'cuenta_detail' cuenta.pk %}">Ver</a> |
-        <a href="{% url 'cuenta_update' cuenta.pk %}">Editar</a> |
-        <a href="{% url 'cuenta_delete' cuenta.pk %}">Eliminar</a>
-    </li>
-    {% endfor %}
-</ul>
+<div class="list-container">
+    <h2>Lista de Cuentas</h2>
+    <a href="{% url 'cuenta_create' %}" class="button-new">Nueva Cuenta</a>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Tipo de Cuenta</th>
+                <th>Saldo</th>
+                <th>Fecha de Creación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cuenta in cuentas %}
+            <tr>
+                <td>{{ cuenta.cliente.nombres_cliente }} {{ cuenta.cliente.apellidos_cliente }}</td>
+                <td>{{ cuenta.tipo_cuenta }}</td>
+                <td>${{ cuenta.saldo_cuenta }}</td>
+                <td>{{ cuenta.fecha_creacion_cuenta }}</td>
+                <td>
+                    <a href="{% url 'cuenta_detail' cuenta.pk %}" class="button-view">Ver</a>
+                    <a href="{% url 'cuenta_update' cuenta.pk %}" class="button-edit">Editar</a>
+                    <a href="{% url 'cuenta_delete' cuenta.pk %}" class="button-delete">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
