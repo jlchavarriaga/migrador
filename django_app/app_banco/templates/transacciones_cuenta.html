@@ -1,0 +1,40 @@
+<!-- templates/transacciones_cuenta.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Transacciones de {{ cuenta.tipo_cuenta }}{% endblock %}
+
+{% block content %}
+<div class="transacciones-container">
+    <h2>Transacciones de la Cuenta - {{ cuenta.tipo_cuenta }}</h2>
+    <p><strong>Cliente:</strong> {{ cuenta.cliente.nombres_cliente }} {{ cuenta.cliente.apellidos_cliente }}</p>
+    <p><strong>Saldo Actual:</strong> ${{ cuenta.saldo_cuenta }}</p>
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Fecha de Transacción</th>
+                <th>Descripción</th>
+                <th>Tipo</th>
+                <th>Monto</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaccion in transacciones %}
+            <tr>
+                <td>{{ transaccion.fecha_posteo_transaccion }}</td>
+                <td>{{ transaccion.descripcion_transaccion }}</td>
+                <td>{{ transaccion.tipo_transaccion }}</td>
+                <td>${{ transaccion.monto }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No hay transacciones registradas para esta cuenta.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'cuenta_list' %}" class="button-back">Volver a la lista de cuentas</a>
+</div>
+{% endblock %}

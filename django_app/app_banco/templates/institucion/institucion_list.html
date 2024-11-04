@@ -1,0 +1,34 @@
+<!-- templates/institucion_list.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Lista de Instituciones{% endblock %}
+
+{% block content %}
+<h2>Lista de Instituciones</h2>
+<a href="{% url 'institucion_create' %}" class="button-new">Nueva Institución</a>
+
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for institucion in instituciones %}
+        <tr>
+            <td>{{ institucion.nombre_institucion }}</td>
+            <td>{{ institucion.direccion }}</td>
+            <td>{{ institucion.telefono }}</td>
+            <td>
+                <a href="{% url 'institucion_update' institucion.pk %}" class="button-edit">Editar</a>
+                <a href="{% url 'institucion_delete' institucion.pk %}" class="button-delete">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

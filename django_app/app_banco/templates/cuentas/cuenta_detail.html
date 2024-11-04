@@ -15,6 +15,7 @@
         <p><strong>Saldo Inicial:</strong> ${{ cuenta.saldo_inicial_cuenta }}</p>
     </div>
     <div class="button-group">
+        <a href="{% url 'transacciones_por_cuenta' cuenta.pk %}" class="button-view-transactions">Ver Transacciones</a>
         <a href="{% url 'cuenta_update' cuenta.pk %}" class="button-edit">Editar</a>
         <a href="{% url 'cuenta_list' %}" class="button-back">Volver a la lista</a>
     </div>

@@ -8,9 +8,44 @@ from django.core.files.base import ContentFile
 from django.contrib import messages
 import os
 from .management.commands.export_transactions import Command as ExportCommand
-from .models import Cliente, Cuenta
-from .forms import ClienteForm, CuentaForm
+from .models import Cliente, Cuenta, Transaccion, Institucion
+from .forms import ClienteForm, CuentaForm, InstitucionForm
 import tempfile
+
+
+#CRUD institucion
+
+def institucion_list(request):
+    instituciones = Institucion.objects.all()
+    return render(request, 'institucion/institucion_list.html', {'instituciones': instituciones})
+
+def institucion_create(request):
+    if request.method == 'POST':
+        form = InstitucionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('institucion_list')
+    else:
+        form = InstitucionForm()
+    return render(request, 'institucion/institucion_form.html', {'form': form})
+
+def institucion_update(request, pk):
+    institucion = get_object_or_404(Institucion, pk=pk)
+    if request.method == 'POST':
+        form = InstitucionForm(request.POST, instance=institucion)
+        if form.is_valid():
+            form.save()
+            return redirect('institucion_list')
+    else:
+        form = InstitucionForm(instance=institucion)
+    return render(request, 'institucion/institucion_form.html', {'form': form})
+
+def institucion_delete(request, pk):
+    institucion = get_object_or_404(Institucion, pk=pk)
+    if request.method == 'POST':
+        institucion.delete()
+        return redirect('institucion_list')
+    return render(request, 'institucion/institucion_confirm_delete.html', {'institucion': institucion})
 
 
 # CRUD para Cliente
@@ -146,3 +181,14 @@ def descargar_transacciones(request):
     os.remove(file_path)
 
     return response
+
+@login_required
+def transacciones_por_cuenta(request, cuenta_id):
+    cuenta = get_object_or_404(Cuenta, id=cuenta_id)
+    transacciones = Transaccion.objects.filter(cuenta=cuenta)
+
+    context = {
+        'cuenta': cuenta,
+        'transacciones': transacciones
+    }
+    return render(request, 'transacciones_cuenta.html', context)
