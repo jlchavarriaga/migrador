@@ -1,0 +1,31 @@
+<!-- templates/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Migrador de transacciones{% endblock %}</title>
+</head>
+
+<body>
+    <header>
+        <h1>{% block header %}Bienvenido a Mi Aplicación{% endblock %}</h1>
+
+        {% if user.is_authenticated %}
+        <p>Bienvenido, {{ user.username }} | <a href="{% url 'logout' %}">Cerrar Sesión</a></p>
+        {% else %}
+        <p><a href="{% url 'login' %}">Iniciar Sesión</a></p>
+        {% endif %}
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Migrador de transacciones</p>
+    </footer>
+</body>
+
+</html>

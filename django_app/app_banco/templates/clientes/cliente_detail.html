@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- templates/cliente_detail.html -->
 
-<head>
-    <meta charset="UTF-8">
-    <title>Detalles del Cliente</title>
-</head>
+{% extends "base.html" %}
 
-<body>
-    <h1>Detalles del Cliente</h1>
-    <p>Nombre: {{ cliente.nombres_cliente }} {{ cliente.apellidos_cliente }}</p>
-    <p>Institución: {{ cliente.institucion.nombre_institucion }}</p>
-    <p>Dirección: {{ cliente.direccion_cliente }}</p>
-    <p>Tipo de Cliente: {{ cliente.tipo_cliente }}</p>
-    <p>DUI: {{ cliente.dui_cliente }}</p>
-    <p>Fecha de Nacimiento: {{ cliente.fecha_nacimiento_cliente }}</p>
-    <a href="{% url 'cliente_update' cliente.pk %}">Editar</a>
-    <a href="{% url 'cliente_list' %}">Volver a la lista</a>
-</body>
+{% block title %}Detalles del Cliente{% endblock %}
 
-</html>
+{% block header %}Detalles del Cliente{% endblock %}
+
+{% block content %}
+<h1>Detalles del Cliente</h1>
+<p>Nombre: {{ cliente.nombres_cliente }} {{ cliente.apellidos_cliente }}</p>
+<p>Institución: {{ cliente.institucion.nombre_institucion }}</p>
+<p>Dirección: {{ cliente.direccion_cliente }}</p>
+<p>Tipo de Cliente: {{ cliente.tipo_cliente }}</p>
+<p>DUI: {{ cliente.dui_cliente }}</p>
+<p>Fecha de Nacimiento: {{ cliente.fecha_nacimiento_cliente }}</p>
+<a href="{% url 'cliente_update' cliente.pk %}">Editar</a>
+<a href="{% url 'cliente_list' %}">Volver a la lista</a>
+{% endblock %}
