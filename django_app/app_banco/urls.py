@@ -15,4 +15,7 @@ urlpatterns = [
     path('cuentas/new/', views.cuenta_create, name='cuenta_create'),
     path('cuentas/<int:pk>/edit/', views.cuenta_update, name='cuenta_update'),
     path('cuentas/<int:pk>/delete/', views.cuenta_delete, name='cuenta_delete'),
+
+    path('cargar_transacciones/', views.cargar_transacciones, name='cargar_transacciones'),
+    path('descargar_transacciones/', views.descargar_transacciones, name='descargar_transacciones'),
 ]

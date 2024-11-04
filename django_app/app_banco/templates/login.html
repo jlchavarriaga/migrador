@@ -1,0 +1,19 @@
+<!-- templates/login.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="login-button">Ingresar</button>
+    </form>
+    {% if form.errors %}
+    <p class="error-message">Credenciales incorrectas. Inténtalo de nuevo.</p>
+    {% endif %}
+</div>
+{% endblock %}
