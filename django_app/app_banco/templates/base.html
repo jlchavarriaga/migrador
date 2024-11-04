@@ -1,31 +1,68 @@
 <!-- templates/base.html -->
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Migrador de transacciones{% endblock %}</title>
+    <title>{% block title %}Migrador de Transacciones{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
     <header>
-        <h1>{% block header %}Bienvenido a Mi Aplicación{% endblock %}</h1>
+        <h1>{% block header %}Migrador de Transacciones{% endblock %}</h1>
+    </header>
+
+    <nav class="menu">
+        <a href="{% url 'cliente_list' %}">Lista de Clientes</a>
+        <a href="{% url 'cliente_create' %}">Nuevo Cliente</a>
+        <a href="{% url 'cuenta_list' %}">Lista de Cuentas</a>
+        <a href="{% url 'cuenta_create' %}">Nueva Cuenta</a>
+
+        <!-- Menú desplegable para procesos de carga y descarga -->
+        <div class="submenu">
+            <a href="#">Procesos</a>
+            <div class="submenu-content">
+                <a href="{% url 'cargar_transacciones' %}">Cargar Transacciones</a>
+                <a href="{% url 'descargar_transacciones' %}">Descargar Transacciones</a>
+            </div>
+        </div>
+
 
         {% if user.is_authenticated %}
-        <p>Bienvenido, {{ user.username }} | <a href="{% url 'logout' %}">Cerrar Sesión</a></p>
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" style="background:none; border:none; color:white; cursor:pointer;">Cerrar
+                Sesión</button>
+        </form>
         {% else %}
-        <p><a href="{% url 'login' %}">Iniciar Sesión</a></p>
+        <a href="{% url 'login' %}">Iniciar Sesión</a>
         {% endif %}
-    </header>
+    </nav>
 
     <main>
         {% block content %}{% endblock %}
     </main>
 
     <footer>
-        <p>&copy; 2024 Migrador de transacciones</p>
+        <p>&copy; 2024 Migrador de Transacciones</p>
     </footer>
+
+    <!-- JavaScript para resaltar el enlace activo -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentLocation = window.location.href;
+            const menuLinks = document.querySelectorAll('.menu a');
+
+            menuLinks.forEach(link => {
+                if (link.href === currentLocation) {
+                    link.style.backgroundColor = '#555';
+                    link.style.color = '#fff';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

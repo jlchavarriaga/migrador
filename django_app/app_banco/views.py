@@ -87,3 +87,13 @@ def cuenta_delete(request, pk):
     cuenta = get_object_or_404(Cuenta, pk=pk)
     cuenta.delete()  # Eliminará la cuenta seleccionada
     return redirect('cuenta_list')
+
+@login_required
+def cargar_transacciones(request):
+    # Lógica de carga de transacciones
+    return HttpResponse("Página de carga de transacciones")
+
+@login_required
+def descargar_transacciones(request):
+    # Lógica de descarga de transacciones
+    return HttpResponse("Página de descarga de transacciones")
