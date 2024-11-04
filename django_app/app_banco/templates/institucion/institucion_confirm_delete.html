@@ -1,0 +1,14 @@
+<!-- templates/institucion_confirm_delete.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Eliminar Institución{% endblock %}
+
+{% block content %}
+<h2>¿Está seguro de que desea eliminar la institución "{{ institucion.nombre_institucion }}"?</h2>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="button-delete">Confirmar Eliminación</button>
+    <a href="{% url 'institucion_list' %}" class="button-back">Cancelar</a>
+</form>
+{% endblock %}

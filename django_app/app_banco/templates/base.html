@@ -18,10 +18,9 @@
     <!-- Mostrar el menú solo si el usuario ha iniciado sesión -->
 
     <nav class="menu">
-        <a href="{% url 'cliente_list' %}">Lista de Clientes</a>
-        <a href="{% url 'cliente_create' %}">Nuevo Cliente</a>
-        <a href="{% url 'cuenta_list' %}">Lista de Cuentas</a>
-        <a href="{% url 'cuenta_create' %}">Nueva Cuenta</a>
+        <a href="{% url 'institucion_list' %}">Instituciones</a>
+        <a href="{% url 'cliente_list' %}">Clientes</a>
+        <a href="{% url 'cuenta_list' %}">Cuentas</a>
 
         <!-- Menú desplegable para procesos de carga y descarga -->
         <div class="submenu">
@@ -33,15 +32,17 @@
         </div>
         {% endif %}
 
-        {% if user.is_authenticated %}
-        <form action="{% url 'logout' %}" method="post" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" style="background:none; border:none; color:white; cursor:pointer;">Cerrar
-                Sesión</button>
-        </form>
-        {% else %}
-        <a href="{% url 'login' %}">Iniciar Sesión</a>
-        {% endif %}
+        <!-- Alineación a la derecha para el login/logout -->
+        <div class="right">
+            {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">Cerrar Sesión</button>
+            </form>
+            {% else %}
+            <a href="{% url 'login' %}">Iniciar Sesión</a>
+            {% endif %}
+        </div>
     </nav>
 
     <main>

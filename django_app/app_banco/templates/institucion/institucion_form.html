@@ -1,0 +1,17 @@
+<!-- templates/institucion_form.html -->
+
+{% extends "base.html" %}
+
+{% block title %}{% if form.instance.pk %}Editar Institución{% else %}Nueva Institución{% endif %}{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>{% if form.instance.pk %}Editar Institución{% else %}Nueva Institución{% endif %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="form-button">Guardar</button>
+        <a href="{% url 'institucion_list' %}" class="form-button cancel">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

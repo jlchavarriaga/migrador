@@ -4,6 +4,11 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('instituciones/', views.institucion_list, name='institucion_list'),
+    path('instituciones/nueva/', views.institucion_create, name='institucion_create'),
+    path('instituciones/<int:pk>/editar/', views.institucion_update, name='institucion_update'),
+    path('instituciones/<int:pk>/eliminar/', views.institucion_delete, name='institucion_delete'),
+
     path('clientes/', views.cliente_list, name='cliente_list'),
     path('clientes/<int:pk>/', views.cliente_detail, name='cliente_detail'),
     path('clientes/new/', views.cliente_create, name='cliente_create'),
