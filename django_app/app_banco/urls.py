@@ -18,4 +18,7 @@ urlpatterns = [
 
     path('cargar_transacciones/', views.cargar_transacciones, name='cargar_transacciones'),
     path('descargar_transacciones/', views.descargar_transacciones, name='descargar_transacciones'),
+
+    path('cuenta/<int:cuenta_id>/transacciones/', views.transacciones_por_cuenta, name='transacciones_por_cuenta'),
+
 ]

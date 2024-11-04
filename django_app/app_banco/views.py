@@ -8,7 +8,7 @@ from django.core.files.base import ContentFile
 from django.contrib import messages
 import os
 from .management.commands.export_transactions import Command as ExportCommand
-from .models import Cliente, Cuenta
+from .models import Cliente, Cuenta, Transaccion
 from .forms import ClienteForm, CuentaForm
 import tempfile
 
@@ -146,3 +146,14 @@ def descargar_transacciones(request):
     os.remove(file_path)
 
     return response
+
+@login_required
+def transacciones_por_cuenta(request, cuenta_id):
+    cuenta = get_object_or_404(Cuenta, id=cuenta_id)
+    transacciones = Transaccion.objects.filter(cuenta=cuenta)
+
+    context = {
+        'cuenta': cuenta,
+        'transacciones': transacciones
+    }
+    return render(request, 'transacciones_cuenta.html', context)
