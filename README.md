@@ -15,6 +15,7 @@ Servicio para migrar un archivo de excel con datos relacionados a clientes y sus
     │   ├── views.py
     ├── management/
     │   ├── commands/
+    │   │   └── export_transactions.py
     │   │   └── load_transactions.py
     ├── templates/
     │   ├── clientes/
@@ -54,7 +55,7 @@ admin1234
  http://127.0.0.1:8000/clientes/
  http://127.0.0.1:8000/cuentas/
 
-# Ejecutar el Proceso de Carga
+# Ejecutar el Proceso de Carga de las transacciones
 Montar la Carpeta de Descargas en el Contenedor (Temporalmente)
     docker-compose run -v /ruta/a/tu/carpeta/descargas:/app/descargas web python manage.py load_transactions /app/descargas/transacciones_prueba.xlsx
 
@@ -74,3 +75,8 @@ Desde windows
     pip install -r requirements.txt
     python manage.py load_transactions /ruta/al/archivo.xlsx
     deactivate
+
+# Ejecutar el Proceso de Descarga de las transacciones
+    python manage.py export_transactions /ruta/donde/guardar/transacciones_exportadas.xlsx
+    docker-compose run web python manage.py export_transactions /app/transacciones_exportadas.xlsx
+    docker exec -it django_app-web-1 python manage.py export_transactions /app/transacciones_prueba.xlsx
