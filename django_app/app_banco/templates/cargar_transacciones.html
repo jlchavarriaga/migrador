@@ -1,0 +1,21 @@
+<!-- templates/cargar_transacciones.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Cargar Transacciones{% endblock %}
+
+{% block content %}
+<h1>Cargar Transacciones</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="file" accept=".xlsx" required>
+    <button type="submit">Cargar</button>
+</form>
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
