@@ -32,3 +32,8 @@ class Transaccion(models.Model):
     descripcion_transaccion = models.TextField()
     fecha_posteo_transaccion = models.DateField()
     tipo_transaccion = models.CharField(max_length=50)
+    monto = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        cliente_nombre = f"{self.cuenta.cliente.nombres_cliente} {self.cuenta.cliente.apellidos_cliente}" if self.cuenta and self.cuenta.cliente else "Cliente desconocido"
+        return f"{cliente_nombre} - {self.cuenta.tipo_cuenta if self.cuenta else 'Cuenta desconocida'}: {self.descripcion_transaccion} - {self.monto}"
