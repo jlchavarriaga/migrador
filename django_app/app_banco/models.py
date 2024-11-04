@@ -4,6 +4,8 @@ class Institucion(models.Model):
     nombre_institucion = models.CharField(max_length=255)
     fecha_creacion_institucion = models.DateField()
     descripcion_institucion = models.TextField()
+    def __str__(self):
+        return self.nombre_institucion
 
 class Cliente(models.Model):
     institucion = models.ForeignKey(Institucion, on_delete=models.CASCADE)
@@ -13,6 +15,8 @@ class Cliente(models.Model):
     direccion_cliente = models.CharField(max_length=255)
     dui_cliente = models.CharField(max_length=10)
     fecha_nacimiento_cliente = models.DateField()
+    def __str__(self):
+        return f"{self.nombres_cliente} {self.apellidos_cliente}"
 
 class Cuenta(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
@@ -20,6 +24,8 @@ class Cuenta(models.Model):
     saldo_cuenta = models.DecimalField(max_digits=10, decimal_places=2)
     fecha_creacion_cuenta = models.DateField()
     saldo_inicial_cuenta = models.DecimalField(max_digits=10, decimal_places=2)
+    def __str__(self):
+        return f"{self.cliente.nombres_cliente} {self.cliente.apellidos_cliente} - {self.tipo_cuenta} : {self.saldo_cuenta}"
 
 class Transaccion(models.Model):
     cuenta = models.ForeignKey(Cuenta, on_delete=models.CASCADE)

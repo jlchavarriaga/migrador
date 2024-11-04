@@ -7,7 +7,15 @@ Servicio para migrar un archivo de excel con datos relacionados a clientes y sus
     ├── docker-compose.yml
     ├── requirements.txt
     └── app/
-
+    ├── templates/
+    │   ├── clientes/
+    │   │   ├── cliente_list.html
+    │   │   ├── cliente_form.html
+    │   │   └── cliente_detail.html
+    │   └── cuentas/
+    │       ├── cuenta_list.html
+    │       ├── cuenta_form.html
+    │       └── cuenta_detail.html
 # creación  del proyecto Django
 docker-compose run web django-admin startproject myproject .
 
@@ -33,3 +41,5 @@ admin1234
 
 # acceder a la aplicación
  http://localhost:8000.
+ http://127.0.0.1:8000/clientes/
+ http://127.0.0.1:8000/cuentas/

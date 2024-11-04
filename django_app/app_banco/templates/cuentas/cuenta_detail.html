@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles de la Cuenta</title>
+</head>
+
+<body>
+    <h1>Detalles de la Cuenta</h1>
+    <p>Cliente: {{ cuenta.cliente.nombres_cliente }} {{ cuenta.cliente.apellidos_cliente }}</p>
+    <p>Tipo de Cuenta: {{ cuenta.tipo_cuenta }}</p>
+    <p>Saldo: {{ cuenta.saldo_cuenta }}</p>
+    <p>Fecha de Creación: {{ cuenta.fecha_creacion_cuenta }}</p>
+    <p>Saldo Inicial: {{ cuenta.saldo_inicial_cuenta }}</p>
+    <a href="{% url 'cuenta_update' cuenta.pk %}">Editar</a>
+    <a href="{% url 'cuenta_list' %}">Volver a la lista</a>
+</body>
+
+</html>

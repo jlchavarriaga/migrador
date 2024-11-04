@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Cuenta</title>
+</head>
+
+<body>
+    <h1>{% if form.instance.pk %}Editar Cuenta{% else %}Nueva Cuenta{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+        <a href="{% url 'cuenta_list' %}">Cancelar</a>
+    </form>
+</body>
+
+</html>
