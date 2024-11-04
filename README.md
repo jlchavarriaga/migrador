@@ -40,6 +40,56 @@ Este proyecto es un servicio Django diseñado para migrar y gestionar datos rela
 
 ## Configuración y Preparación
 
+## USO
+### 0. Clonar el Repositorio
+
+Primero, descarga o clona el proyecto desde el repositorio. Usa el siguiente comando para clonar el repositorio en tu máquina local:
+
+```bash
+git clone https://github.com/jlchavarriaga/migrador.git
+```
+
+Luego, navega al directorio del proyecto:
+```bash
+cd migrador
+```
+
+### 1. Construir y Ejecutar los Contenedores
+Ejecuta los siguientes comandos para construir los contenedores Docker y ejecutarlos en segundo plano:
+```bash
+docker-compose build
+docker-compose up -d
+```
+
+### 2. Aplicar las migraciones iniciales para Django
+Aplica las migraciones para configurar la base de datos según los modelos de Django:
+
+```bash
+docker-compose run web python manage.py migrate
+```
+
+### 3. Creación del SuperUsuario
+Crea un superusuario para acceder a la interfaz de administración de Django:
+
+
+```bash
+docker-compose run web python manage.py createsuperuser
+```
+
+#### Credenciales de Ejemplo
+- Usuario: admin
+- Contraseña: admin1234
+
+### 4. Acceso a la aplicación
+Una vez que los contenedores están en ejecución y las migraciones se han aplicado correctamente, puedes acceder a la aplicación en tu navegador:
+
+
+- Interfaz principal: http://localhost:8000
+- CRUD de Clientes: http://localhost:8000/clientes/
+- CRUD de Cuentas: http://localhost:8000/cuentas/
+
+
+## CREACIÓN
 ### 1. Creación del Proyecto Django
 ```bash
 docker-compose run web django-admin startproject myproject .
@@ -61,9 +111,11 @@ docker-compose up -d
 docker-compose run web python manage.py migrate
 ```
 
-# 5. Generar los archivos de migración despues de construir los modelos
+## 5. Generar los archivos de migración despues de construir los modelos
+```bash
 docker-compose run web python manage.py makemigrations
 docker-compose run web python manage.py migrate
+```
 
 ## 6. Creación del SuperUsuario
 ```bash
